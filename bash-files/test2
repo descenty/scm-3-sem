@@ -1,0 +1,15 @@
+#!/bin/bash
+len=${#1}+2
+echo -n '+'
+for ((i=0;i<len;i++)) do
+echo -n '-'
+done
+echo '+'
+echo -n '| '
+echo -n "$1"
+echo ' |'
+echo -n '+'
+for ((i=0;i<len;i++)) do
+echo -n '-'
+done
+echo '+'
