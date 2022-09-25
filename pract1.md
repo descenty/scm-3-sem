@@ -7,7 +7,7 @@
 Вывести отсортированный в алфавитном порядке список имен пользователей в файле passwd (вам понадобится grep).
 
 > Решение:
-```
+```console
 [root@localhost etc]# grep -oE '^[^:]+' passwd | sort
 adm
 bin
@@ -41,7 +41,7 @@ pesign
 ```
 
 > Решение
-```
+```console
 [root@localhost etc]# awk '{if ($1 != "#") print $2, $1}' protocols | sort -r -n
 k1 | head -5
 142 rohc
@@ -65,7 +65,7 @@ k1 | head -5
 Перед отправкой решения проверьте его в ShellCheck на предупреждения.
 
 > Решение
-```
+```console
 [root@localhost ~]# cat test
 #!/bin/bash
 len=${#1}+2
@@ -123,7 +123,7 @@ h hello include int main n printf return stdio void world
 Написать программу, которая находит все файлы в данном каталоге с расширением, указанным в качестве аргумента и архивирует все эти файлы в архив tar.
 
 > Решение
-```
+```console
 localhost:~# cat archive_files
 #!/bin/bash
 tar cvf output.tar *.$1
@@ -147,7 +147,7 @@ bench.py       hello.js       readme.txt
 Написать программу, которая выводит названия всех пустых текстовых файлов в указанной директории. Директория передается в программу параметром.
 
 > Решение
-```
+```console
 [root@localhost ~]# cat empty_files
 #!/bin/bash
 find $1 -type f -empty
