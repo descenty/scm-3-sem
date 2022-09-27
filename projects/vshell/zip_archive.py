@@ -5,12 +5,8 @@ from archive import Archive
 
 class ZipArchive(Archive):
     def __init__(self, archive_name: str) -> None:
+        super().__init__(self)
         self.zip_archive = ZipFile(archive_name, 'a')
-        self.current_dir = ''
-        self.depth = 0
-
-    def input_message(self) -> str:
-        return self.current_dir + '> '
 
     def ls(self) -> list[str]:
         messages: list[str] = []
@@ -28,12 +24,6 @@ class ZipArchive(Archive):
         messages.extend(directories)
         return messages
 
-    def pwd(self) -> str:
-        if self.current_dir == '':
-            return ('/')
-        else:
-            return (self.current_dir)
-
     def cd(self, directory_name: str) -> str | None:
         if directory_name == '/':
             self.current_dir = ''
@@ -47,8 +37,10 @@ class ZipArchive(Archive):
                 if '/' in zinfo.filename:
                     directories.add(zinfo.filename.split('/')[0])
             if directory_name in directories:
-                self.current_dir = directory_name if self.current_dir == '' else self.current_dir + '/' + directory_name
-                self.depth = (self.current_dir != '') + self.current_dir.count('/')
+                self.current_dir = directory_name if self.current_dir == '' else self.current_dir + \
+                    '/' + directory_name
+                self.depth = (self.current_dir != '') + \
+                              self.current_dir.count('/')
             else:
                 return f'{directory_name}: No such directory'
 
@@ -67,6 +59,12 @@ class ZipArchive(Archive):
             return ['No such file: ' + file_name]
 
     def mkdir(self, directory_name: str) -> str:
+        directories = set()
+        for zinfo in self.zip_archive.filelist:
+            if '/' in zinfo.filename:
+                directories.add(zinfo.filename.split('/')[0])
+        if directory_name in directories:
+            return f'Directory {directory_name} already exists'
         meta_file_name = directory_name + '.meta'
         with open(meta_file_name, 'w') as f:
             self.zip_archive.write(meta_file_name, directory_name +

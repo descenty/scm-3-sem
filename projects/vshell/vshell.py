@@ -8,6 +8,7 @@ import shutil
 import zipfile
 from archive import Archive
 from zip_archive import ZipArchive
+from tar_archive import TarArchive
 
 
 def main():
@@ -25,7 +26,7 @@ def main():
     if is_zipfile(file_path):
         archive = ZipArchive(file_path)
     elif is_tarfile(file_path):
-        archive = TarFile(file_path, 'a')
+        archive = TarArchive(file_path)
     ans = ''
     while (True):
         print(archive.input_message(), end='')
@@ -47,12 +48,14 @@ def main():
             case 'cd':
                 if len(ans.split()) < 2:
                     continue
-                answer = archive.cd(ans.split()[1])
+                path = ans.split()[1]
+                answer = archive.cd(path)
                 if answer != None:
-                    print(archive.cd(ans.split()[1]))
+                    print(archive.cd(path))
             case 'cat':
                 if len(ans.split()) < 2:
                     print('There is no path')
+                    continue
                 print()
                 [print(x) for x in archive.cat(ans.split()[1])]
                 print()
@@ -60,7 +63,10 @@ def main():
                 if len(ans.split()) < 2:
                     print('There is no new directory name')
                     continue
-                archive.mkdir(ans.split()[1])
+                path = ans.split()[1]
+                answer = archive.mkdir(path)
+                if answer != None:
+                    print(archive.mkdir(path))
             case 'help':
                 print()
                 print('Supported commands: ' + str(commands))
