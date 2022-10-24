@@ -1,0 +1,13 @@
+digraph {
+	"vue@3.2.41" [label="vue@3.2.41"]
+	"@vue/shared@3.2.41" [label="@vue/shared@3.2.41"]
+	"vue@3.2.41" -> "@vue/shared@3.2.41"
+	"@vue/compiler-dom@3.2.41" [label="@vue/compiler-dom@3.2.41"]
+	"vue@3.2.41" -> "@vue/compiler-dom@3.2.41"
+	"@vue/runtime-dom@3.2.41" [label="@vue/runtime-dom@3.2.41"]
+	"vue@3.2.41" -> "@vue/runtime-dom@3.2.41"
+	"@vue/compiler-sfc@3.2.41" [label="@vue/compiler-sfc@3.2.41"]
+	"vue@3.2.41" -> "@vue/compiler-sfc@3.2.41"
+	"@vue/server-renderer@3.2.41" [label="@vue/server-renderer@3.2.41"]
+	"vue@3.2.41" -> "@vue/server-renderer@3.2.41"
+}

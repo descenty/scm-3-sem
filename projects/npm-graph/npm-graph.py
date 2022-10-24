@@ -16,8 +16,8 @@ def generate_graph(dependencies: dict):
                 dot.node(child, child)
                 nodes.append(child)
             dot.edge(dependency[0], child)
+    dot.render(list(dependencies.items())[0][0] + '.gv')
     return dot.source
-    #dot.render(list(dependencies.items())[0][0] + '.gv')
 
 
 def get_max_minor_version(package_name: str, target_major: int) -> list[str]:
