@@ -12,7 +12,7 @@ from tar_archive import TarArchive
 
 
 def main():
-    commands = ['ls', 'pwd', 'cd', 'cat', 'mkdir', 'clear/cls', 'exit']
+    commands = ['ls', 'pwd', 'cd', 'cat', 'mkdir', 'clear', 'exit', 'help']
     message = "VShell 0.0.1\n\nType 'help' to get help.\n"
     print(message)
     if len(sys.argv) < 2:
