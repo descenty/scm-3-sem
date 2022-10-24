@@ -42,8 +42,7 @@ pesign
 
 > Решение
 ```console
-[root@localhost etc]# awk '{if ($1 != "#") print $2, $1}' protocols | sort -r -n
-k1 | head -5
+[root@localhost etc]# awk '{if ($1 != "#") print $2, $1}' protocols | sort -r -nk1 | head -5
 142 rohc
 141 wesp
 140 shim6
